@@ -1,6 +1,51 @@
-@width: 20;
-.main{
-    width: @width * 8px;
-    height: 60px;
-    background: url('../img/card2.png') no-repeat 
+@body-color: #f0f0f0;
+@container-color: #fff;
+
+body {
+    background: @body-color;
+}
+
+.login-container {
+    background: @container-color;
+
+    .login-title {
+        background: @container-color - 20;
+        padding: 10px;
+    }
+
+    .login-content {
+        padding: 10px;
+    }
+}
+
+.topic-list-container {
+    background: @container-color;
+    padding: 0;
+    div {
+        // padding: 0;
+    }
+    .container {
+        width: auto;
+        padding: 0;
+    }
+    .topic-container {
+        // padding: 0;
+    }
+}
+
+.topic-cell {
+    border-top: 1px solid @body-color;
+    padding: 10px 0 10px 10px;
+    .user-avatar {
+        display: inline-block;
+        img {
+            width: 30px;
+            height: 30px;
+        }
+    }
+    .reply-count {
+        width: 70px;
+        display: inline-block;
+        text-align: center;
+    }
 }

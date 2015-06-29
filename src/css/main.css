@@ -1,1 +1,37 @@
-.main{width:160px;height:60px;background:url('../img/card2.png') no-repeat}
+body {
+  background: #f0f0f0;
+}
+.login-container {
+  background: #ffffff;
+}
+.login-container .login-title {
+  background: #ebebeb;
+  padding: 10px;
+}
+.login-container .login-content {
+  padding: 10px;
+}
+.topic-list-container {
+  background: #ffffff;
+  padding: 0;
+}
+.topic-list-container .container {
+  width: auto;
+  padding: 0;
+}
+.topic-cell {
+  border-top: 1px solid #f0f0f0;
+  padding: 10px 0 10px 10px;
+}
+.topic-cell .user-avatar {
+  display: inline-block;
+}
+.topic-cell .user-avatar img {
+  width: 30px;
+  height: 30px;
+}
+.topic-cell .reply-count {
+  width: 70px;
+  display: inline-block;
+  text-align: center;
+}
