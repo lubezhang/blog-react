@@ -2,6 +2,7 @@ var React = require('react');
 var Grid = require('react-bootstrap').Grid;
 var Row = require('react-bootstrap').Row;
 var Col = require('react-bootstrap').Col;
+var Login = require('./login');
 
 var Topic = React.createClass({
     render: function(){
@@ -31,16 +32,7 @@ var TopicList = React.createClass({
     }
 });
 
-var Login = React.createClass({
-    render: function(){
-        return (
-            <div className="login-container">
-                <div className="login-title">个人信息</div>
-                <div className="login-content">用户信息</div>
-            </div>
-        );
-    }
-});
+
 
 var Main = React.createClass({
     render: function() {
