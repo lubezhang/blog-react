@@ -1,8 +1,9 @@
-var React = require('react');
-var Grid = require('react-bootstrap').Grid;
-var Row = require('react-bootstrap').Row;
-var Col = require('react-bootstrap').Col;
-var Login = require('./login');
+// var Login = require('./login');
+
+import React from 'react';
+import ReactBootstrap, { Grid, Row, Col } from 'react-bootstrap';
+
+import Login from './login';
 
 var Topic = React.createClass({
     render: function(){

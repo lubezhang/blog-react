@@ -1,7 +1,13 @@
-var React = require('react');
-var Navbar = require('react-bootstrap').Navbar;
-var Nav = require('react-bootstrap').Nav;
-var NavItem = require('react-bootstrap').NavItem;
+import React from 'react';
+import ReactBootstrap, { Navbar, Nav, NavItem } from 'react-bootstrap';
+import ReactRouterBootstrap, { NavItemLink } from 'react-router-bootstrap';
+
+import Main from './main';
+
+// var ReactRouterBootstrap = require('react-router-bootstrap')
+//   , NavItemLink = ReactRouterBootstrap.NavItemLink
+//   , ButtonLink = ReactRouterBootstrap.ButtonLink
+//   , ListGroupItemLink = ReactRouterBootstrap.ListGroupItemLink;
 
 var Header = React.createClass({
 
@@ -9,10 +15,10 @@ var Header = React.createClass({
         return (
             <Navbar brand='Blog' toggleNavKey={0}>
                 <Nav right eventKey={0}>
-                    <NavItem eventKey={1} href="/">首页</NavItem>
-                    <NavItem eventKey={2} href="/">关于</NavItem>
-                    <NavItem eventKey={3} href="/">注册</NavItem>
-                    <NavItem eventKey={4} href="/">登录</NavItem>
+                    <NavItemLink to="main" className="">首页</NavItemLink>
+                    <NavItemLink to="about" >关于</NavItemLink>
+                    <NavItemLink to="register" >注册</NavItemLink>
+                    <NavItemLink to="login" >登录</NavItemLink>
                 </Nav>
             </Navbar>
         );
@@ -20,4 +26,4 @@ var Header = React.createClass({
 
 });
 
-module.exports = Header;
+export default Header;
