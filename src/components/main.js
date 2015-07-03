@@ -11,7 +11,7 @@ var Main = React.createClass({
         return (
             <div className="row">
                 <div className="col-md-9 topic-list-container ">
-                    <TopicList />
+                    <TopicList items={["标题1", "标题2", "标题3", "标题4"]}/>
                 </div>
                 <div className="col-md-3">
                     <Login />
