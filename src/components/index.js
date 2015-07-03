@@ -1,3 +1,14 @@
-import Login from './login';
+import React from 'react';
 
-module.exports = { Login };
+import Main from './main';
+import Header from './header';
+import Login from './login';
+import { TopicList, Topic } from './topic';
+
+export default { 
+    Header, 
+    Login, 
+    Main,
+    TopicList,
+    Topic 
+};

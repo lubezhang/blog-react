@@ -19,5 +19,9 @@ module.exports = {
             exclude: /node_modules/,
             loader: 'babel'
         }]
-    }
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
+    ]
 }
