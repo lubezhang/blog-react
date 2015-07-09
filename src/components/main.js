@@ -3,8 +3,8 @@
 import React from 'react';
 import ReactBootstrap, { Grid, Row, Col } from 'react-bootstrap';
 
-import Login from './login';
-import { TopicList } from './topic';
+import Login from './Login';
+import { TopicList } from './Topic';
 
 var Main = React.createClass({
     render: function() {

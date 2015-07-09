@@ -1,9 +1,9 @@
 import React from 'react';
 
-import Main from './main';
-import Header from './header';
-import Login from './login';
-import { TopicList, Topic } from './topic';
+import Main from './Main';
+import Header from './Header';
+import Login from './Login';
+import { TopicList, Topic } from './Topic';
 
 export default { 
     Header, 
