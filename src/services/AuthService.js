@@ -3,7 +3,7 @@ import AuthAction from '../actions/AuthAction';
 
 class AuthService {
     login(username, password){
-        AuthAction.login();
+        AuthAction.login(username, password);
         return true;
     }
 

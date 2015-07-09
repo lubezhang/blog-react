@@ -15,15 +15,27 @@ var UserInfo = React.createClass({
 });
 
 var UserLogin = React.createClass({
-    loginHandle: function(){
-        var loginResult = AuthService.login();
+    getInitialState: function(){
+        return {
+            username: "",
+            password: ""
+        };
+    },
+    handleLogin: function(){
+        AuthService.login(this.refs.username.getValue(), this.refs.password.getValue());
+    },
+    handleChange: function(){
+        this.setState({
+            username: this.refs.username.getValue(),
+            password: this.refs.password.getValue()
+        });
     },
     render: function(){
         return (
             <form className="login-container">
-                <Input type="text" value="" placeholder="用户名" />
-                <Input type="password" value="" placeholder="密码" />
-                <ButtonInput value="登录"  bsStyle="primary" onClick={this.loginHandle}/>
+                <Input type="text" value={this.state.username} ref="username" placeholder="用户名" onChange={this.handleChange} />
+                <Input type="password" value={this.state.password} ref="password" placeholder="密码" onChange={this.handleChange} />
+                <ButtonInput value="登录"  bsStyle="primary" onClick={this.handleLogin}/>
             </form>
         );
     }
@@ -31,9 +43,10 @@ var UserLogin = React.createClass({
 
 var Login = React.createClass({
     getInitialState: function() {
-        return {isLogin: false};
+        return this.getLoginState();
     },
     componentDidMount: function() {
+        this.changeListener = this._onChange.bind(this);
         AuthStore.addChangeListener(this._onChange);
     },
     componentWillMount: function() {
@@ -51,7 +64,10 @@ var Login = React.createClass({
         }
     },
     _onChange: function(){
-        this.setState({isLogin: AuthStore.isLogin()});
+        this.setState(this.getLoginState());
+    },
+    getLoginState: function(){
+        return {isLogin: AuthStore.isLogin()};
     }
 });
 
