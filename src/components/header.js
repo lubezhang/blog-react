@@ -2,13 +2,6 @@ import React from 'react';
 import ReactBootstrap, { Navbar, Nav, NavItem } from 'react-bootstrap';
 import ReactRouterBootstrap, { NavItemLink } from 'react-router-bootstrap';
 
-import Main from './main';
-
-// var ReactRouterBootstrap = require('react-router-bootstrap')
-//   , NavItemLink = ReactRouterBootstrap.NavItemLink
-//   , ButtonLink = ReactRouterBootstrap.ButtonLink
-//   , ListGroupItemLink = ReactRouterBootstrap.ListGroupItemLink;
-
 var Header = React.createClass({
 
     render: function() {

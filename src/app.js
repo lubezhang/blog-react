@@ -1,6 +1,6 @@
 import React from 'react';
 import Router, { RouteHandler } from 'react-router';
-import Header from './components/header';
+import Components, { Header } from './components';
 
 let App = React.createClass({
     render: function() {

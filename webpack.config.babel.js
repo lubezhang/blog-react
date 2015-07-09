@@ -6,7 +6,6 @@ var srcPath = __dirname + '/src/';
 var distPath = __dirname + '/dist/';
 
 module.exports = {
-    debug: true,
     entry: srcPath + 'indexBabel.js',
     output: {
         path: distPath,
@@ -19,5 +18,9 @@ module.exports = {
             exclude: /node_modules/,
             loader: 'babel'
         }]
-    }
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
+    ]
 }

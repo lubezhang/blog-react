@@ -1,5 +1,7 @@
 'use strict';
 
+var webpack = require('webpack');
+
 var srcPath = __dirname + '/src/';
 var distPath = __dirname + '/dist/';
 
@@ -18,5 +20,9 @@ module.exports = {
             { test: /\.css$/, loader: 'style!css!autoprefixer' },
             { test: /\.(png|jpg)$/, loader: 'url?limit=8192'} 
         ]
-    }
+    },
+    plugins: [
+        new webpack.HotModuleReplacementPlugin(),
+        new webpack.NoErrorsPlugin()
+    ]
 }

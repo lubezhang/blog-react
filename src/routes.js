@@ -2,8 +2,7 @@ import React from 'react';
 import Router, { Route, Link, RouteHandler, NotFoundRoute, DefaultRoute } from 'react-router';
 
 import App from './app';
-import Main from './components/main';
-import Login from './components/login';
+import { Main, Login } from './components';
 
 var Home = React.createClass({
     render: function(){
