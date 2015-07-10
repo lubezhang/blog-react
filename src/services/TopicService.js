@@ -1,8 +1,13 @@
-import { ACTION_AUTH_LOGIN } from '../constants/Constants';
+import reqUtils from '../utils/reqUtils';
+
+import { URL_TOPIC_LIST } from '../constants/Constants';
+import TopicAction from '../actions/TopicAction';
 
 class TopicService {
-    topicList(){
-        return {};
+    getTopicList() {
+        reqUtils.getJSON(URL_TOPIC_LIST).then(function(list) {
+            TopicAction.getTopicList(list);
+        })
     }
 }
 

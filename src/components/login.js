@@ -46,7 +46,6 @@ var Login = React.createClass({
         return this.getLoginState();
     },
     componentDidMount: function() {
-        this.changeListener = this._onChange.bind(this);
         AuthStore.addChangeListener(this._onChange);
     },
     componentWillMount: function() {

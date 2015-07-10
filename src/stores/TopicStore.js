@@ -1,36 +1,24 @@
-import request from 'reqwest';
-import when from 'when';
-
 import BaseStore from './BaseStore';
-import { URL_REMOTE_API } from '../constants/Constants';
+import { ACTION_TOPIC_LIST } from '../constants/Constants';
 
 class TopicStore extends BaseStore {
     constructor() {
         super();
-        this.subscribe(() => this._registerToActions.bind(this))
+        this.subscribe(() => this._registerToActions.bind(this));
+        this.topicList = [];
     }
 
     _registerToActions(action) {
         switch(action.actionType){
-            case "sdf":
-                
+            case ACTION_TOPIC_LIST:
+                this.topicList = action.topicList;
+                this.emitChange();
                 break;
         }
     }
 
     getTopicList() {
-        when(request({
-            url: URL_REMOTE_API + "topic/list",
-            method: 'POST',
-            crossOrigin: true,
-            type: 'json',
-            data: {
-                
-            }
-        })).then(function(list){
-            debugger;
-        })
-        return [];
+        return this.topicList;
     }
 }
 
