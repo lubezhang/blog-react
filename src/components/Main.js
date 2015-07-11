@@ -18,7 +18,7 @@ var Main = React.createClass({
                 </div>
             </div>
         );
-    }
+    } 
 });
 
 export default Main;

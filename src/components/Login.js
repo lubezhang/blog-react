@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, ButtonInput } from 'react-bootstrap';
+import { Input, Button } from 'react-bootstrap';
 import AuthService from '../services/AuthService';
 import AuthStore from '../stores/AuthStore';
 
@@ -32,10 +32,10 @@ var UserLogin = React.createClass({
     },
     render: function(){
         return (
-            <form className="login-container">
+            <form className=" form-signin login-container">
                 <Input type="text" value={this.state.username} ref="username" placeholder="用户名" onChange={this.handleChange} />
                 <Input type="password" value={this.state.password} ref="password" placeholder="密码" onChange={this.handleChange} />
-                <ButtonInput value="登录"  bsStyle="primary" onClick={this.handleLogin}/>
+                <Button bsStyle="primary" block onClick={this.handleLogin}>登录</Button>
             </form>
         );
     }

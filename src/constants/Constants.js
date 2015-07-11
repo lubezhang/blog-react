@@ -1,4 +1,4 @@
-let URL_REMOTE_API = "http://10.16.93.35:3000/";
+let URL_REMOTE_API = "http://blog-express.coding.io/";
 
 export default {
     URL_TOPIC_LIST: URL_REMOTE_API + "topic/list",

@@ -2,7 +2,7 @@ import React from 'react';
 import Router, { Route, Link, RouteHandler, NotFoundRoute, DefaultRoute } from 'react-router';
 
 import App from './app';
-import { Main, Login } from './components';
+import { Main, Login, Register } from './components';
 
 var Home = React.createClass({
     render: function(){
@@ -27,7 +27,7 @@ var routes = (
 
     <Route name='main' path='/' handler={Main} />
     <Route name='about' path='/about' handler={Login} />
-    <Route name='register' path='/register' handler={Login} />
+    <Route name='register' path='/register' handler={Register} />
     <Route name='login' path='/login' handler={Login} />
   </Route>
 );
