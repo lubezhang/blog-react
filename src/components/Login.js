@@ -1,5 +1,5 @@
 import React from 'react';
-import { Input, Button } from 'react-bootstrap';
+import { Input, Button, Alert } from 'react-bootstrap';
 import AuthService from '../services/AuthService';
 import AuthStore from '../stores/AuthStore';
 
@@ -18,8 +18,17 @@ var UserLogin = React.createClass({
     getInitialState: function(){
         return {
             username: "",
-            password: ""
+            password: "",
+            isLogin: {
+                success: true
+            }
         };
+    },
+    componentDidMount: function() {
+        AuthStore.addChangeListener(this._onChange);
+    },
+    componentWillMount: function() {
+        AuthStore.removeChangeListener(this._onChange);
     },
     handleLogin: function(){
         AuthService.login(this.refs.username.getValue(), this.refs.password.getValue());
@@ -30,14 +39,36 @@ var UserLogin = React.createClass({
             password: this.refs.password.getValue()
         });
     },
+    handleAlertDismiss: function() {
+        this.setState({
+            isLogin: {
+                success: true
+            }
+        });
+    },
     render: function(){
+        var alert;
+        if(this.state.isLogin.success === false ){
+            alert = (
+                <Alert bsStyle='danger' onDismiss={this.handleAlertDismiss} dismissAfter={2000}>
+                    <p>{this.state.isLogin.message}</p>
+                </Alert>
+            );
+        }
         return (
-            <form className=" form-signin login-container">
+            <form className="form-signin login-container">
+                {alert}
                 <Input type="text" value={this.state.username} ref="username" placeholder="用户名" onChange={this.handleChange} />
                 <Input type="password" value={this.state.password} ref="password" placeholder="密码" onChange={this.handleChange} />
                 <Button bsStyle="primary" block onClick={this.handleLogin}>登录</Button>
             </form>
         );
+    },
+    _onChange: function(){
+        this.setState(this.getLoginState());
+    },
+    getLoginState: function(){
+        return {isLogin: AuthStore.isLogin(), userInfo: AuthStore.getUserInfo()};
     }
 });
 
@@ -52,13 +83,13 @@ var Login = React.createClass({
         AuthStore.removeChangeListener(this._onChange);
     },
     render: function(){
-        if(this.state.isLogin){
+        if(this.state.isLogin.success === true){
             return (
                 <UserInfo />
             )
         } else {
             return (
-                <UserLogin />
+                <UserLogin/>
             )
         }
     },
@@ -66,7 +97,7 @@ var Login = React.createClass({
         this.setState(this.getLoginState());
     },
     getLoginState: function(){
-        return {isLogin: AuthStore.isLogin()};
+        return {isLogin: AuthStore.isLogin(), userInfo: AuthStore.getUserInfo()};
     }
 });
 

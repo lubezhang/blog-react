@@ -9,7 +9,6 @@ var Header = React.createClass({
             <Navbar brand='Blog' toggleNavKey={0}>
                 <Nav right eventKey={0}>
                     <NavItemLink to="main" className="">首页</NavItemLink>
-                    <NavItemLink to="about" >关于</NavItemLink>
                     <NavItemLink to="register" >注册</NavItemLink>
                     <NavItemLink to="login" >登录</NavItemLink>
                 </Nav>

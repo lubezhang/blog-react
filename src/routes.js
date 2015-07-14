@@ -26,7 +26,6 @@ var routes = (
     <DefaultRoute handler={Main} />
 
     <Route name='main' path='/' handler={Main} />
-    <Route name='about' path='/about' handler={Login} />
     <Route name='register' path='/register' handler={Register} />
     <Route name='login' path='/login' handler={Login} />
   </Route>

@@ -21,7 +21,7 @@ var Register = React.createClass({
     },
     render: function(){
         return (
-            <form className="form-signin">
+            <form className="form-signin  login-container">
                 <Input type="text" value={this.state.email} ref="email" placeholder="邮件地址" onChange={this.handleChange} help="你的邮件地址，用于登录和显示"/>
                 <Input type="password" value={this.state.password} ref="password" placeholder="登录密码" onChange={this.handleChange} />
                 <Input type="password" value={this.state.rePwd} ref="rePwd" placeholder="确认密码" onChange={this.handleChange} />
