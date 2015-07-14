@@ -4,12 +4,6 @@ import Router, { Route, Link, RouteHandler, NotFoundRoute, DefaultRoute } from '
 import App from './app';
 import { Main, Login, Register } from './components';
 
-var Home = React.createClass({
-    render: function(){
-        return <h2>Home</h2>;
-    }
-});
-
 var NotFound = React.createClass({
     render: function(){
         return <h2>Not Found</h2>;
