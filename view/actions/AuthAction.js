@@ -2,11 +2,10 @@ import AppDispatcher from '../AppDispatcher.js';
 import { ACTION_AUTH_LOGIN } from '../constants/Constants';
 
 export default {
-    login: function(username, password){
+    login: function(data){
         AppDispatcher.dispatch({
           actionType: ACTION_AUTH_LOGIN,
-          username: username,
-          password: password
+          data: data
         });
     }
 }

@@ -1,12 +1,17 @@
 body {
   background: #f0f0f0;
 }
+.form-signin {
+  max-width: 330px;
+  padding: 15px;
+  margin: 0 auto;
+}
 .login-container {
   background: #ffffff;
 }
 .login-container .login-title {
   background: #ebebeb;
-  padding: 10px;
+  padding: 10px; 
 }
 .login-container .login-content {
   padding: 10px;
