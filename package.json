@@ -37,14 +37,16 @@
     "webpack-dev-server": "^1.9.0"
   },
   "scripts": {
-    "clean": "rimraf build",
-    "watch-html": "mkdirp build && nodemon --watch index.html --exec 'echo `cp index.html build/index.html`'",
-    "watch-css": "mkdirp build && catw static/css/*.css -o build/app.css -v",
-    "watch-js": "mkdirp build & npm run build",
-    "build": "npm run clean && npm run watch-css & webpack --config webpack.config.js",
+    "watch-html": "nodemon --watch index.html --exec 'echo `cp index.html build/index.html`'",
+    "watch-css": "catw static/css/*.css -o build/css/app.css -v",
+    "watch-img": "nodemon --exec 'cp -R static/img/*.* build/img'",
+    "watch-js": "npm run build",
+    "watch": "npm run watch-css & npm run watch-html & npm run watch-img & npm run serve",
+    "clean": "rimraf build && mkdirp build build/css build/img",
+    "build": "npm run clean && webpack --config webpack.config.js",
     "serve": "node server.js",
     "api": "nodemon ./server/app.js",
-    "start": "npm run watch-html & npm run watch-js & npm run watch-css & npm run serve",
+    "start": "npm run build && npm run watch",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "lubezhang",
