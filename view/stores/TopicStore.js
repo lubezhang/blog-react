@@ -18,7 +18,7 @@ class TopicStore extends BaseStore {
     }
 
     getTopicList() {
-        return this.topicList;
+        return this.topicList || [];
     }
 }
 

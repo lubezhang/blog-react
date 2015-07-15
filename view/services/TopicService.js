@@ -5,8 +5,8 @@ import TopicAction from '../actions/TopicAction';
 
 class TopicService {
     getTopicList() {
-        reqUtils.getJSON(URL_TOPIC_LIST).then(function(list) {
-            TopicAction.getTopicList(list);
+        reqUtils.getJSON(URL_TOPIC_LIST).then(function(data) {
+            TopicAction.getTopicList(data.data);
         })
     }
 }

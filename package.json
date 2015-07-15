@@ -39,10 +39,11 @@
   "scripts": {
     "clean": "rimraf build",
     "watch-html": "mkdirp build && nodemon --watch index.html --exec 'echo `cp index.html build/index.html`'",
-    "watch-css": "mkdirp build && catw src/css/*.css -o build/app.css -v",
-    "watch-js": "mkdirp build",
+    "watch-css": "mkdirp build && catw static/css/*.css -o build/app.css -v",
+    "watch-js": "mkdirp build & npm run build",
     "build": "npm run clean && npm run watch-css & webpack --config webpack.config.js",
     "serve": "node server.js",
+    "api": "nodemon ./server/app.js",
     "start": "npm run watch-html & npm run watch-js & npm run watch-css & npm run serve",
     "test": "echo \"Error: no test specified\" && exit 1"
   },

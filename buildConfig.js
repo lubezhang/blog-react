@@ -5,7 +5,7 @@ var _ = require('lodash');
 module.exports = function(options) {
   var config = {
     entry: [
-      './src/index.js'
+      './view/index.js'
     ],
     output: {
       path: path.join(__dirname, 'build'),
@@ -21,7 +21,7 @@ module.exports = function(options) {
     },
     module: {
       loaders: [
-        {test: /\.js$/, loaders: ['babel?stage=0'], include: path.join(__dirname, 'src')},
+        {test: /\.js$/, loaders: ['babel?stage=0'], include: path.join(__dirname, 'view')},
       ]
     },
   };
