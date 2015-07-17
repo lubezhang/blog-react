@@ -1,9 +1,14 @@
-var mongodb = require("./db");
+var mongoose = require("../utils/mongoose");
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
 
-function Topic(){
-	this.topicTitle;	//名称
-	this.listTime;		//最后回复时间
-	this.createTime; 
-}
+var TopicSchema = new Schema({
+    author: ObjectId,
+    title: String,
+    listTime: Date,
+    create: Date
+});
 
-module.exports = Topic;
+var TopicModel = mongoose.model("Topic", TopicSchema);
+
+module.exports = TopicModel;

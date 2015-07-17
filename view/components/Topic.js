@@ -14,7 +14,7 @@ var Topic = React.createClass({
                     <img src="/img/user-icon.png" title={this.props.topic.userId} />
                 </a>
                 <span className="reply-count">20/100</span>
-                <a href="javascritp: void(0);" onClick={this.titleHandle}>{this.props.topic.topicTitle}</a>
+                <a href="javascritp: void(0);" onClick={this.titleHandle}>{this.props.topic.title}</a>
             </div>
         );
     }

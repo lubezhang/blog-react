@@ -4,23 +4,32 @@ import AuthService from '../services/AuthService';
 import AuthStore from '../stores/AuthStore';
 
 var UserInfo = React.createClass({
+    getInitialState: function() {
+        return {
+            username: "" 
+        };
+    },
+    componentDidMount: function() {
+        this.setState(AuthStore.getUserInfo());
+    },
     render: function(){
         return (
             <div className="login-container">
                 <div className="login-title">个人信息</div>
-                <div className="login-content">用户信息222</div>
+                <div className="login-content">{this.state.username}</div>
             </div>
         );
     }
 });
-
+/************************************************************************/
+/************************************************************************/
 var UserLogin = React.createClass({
     getInitialState: function(){
         return {
-            username: "",
-            password: "",
+            username: "lubezhang@gmail.com",
+            password: "111111",
             isLogin: {
-                success: true
+                resultCode: 0
             }
         };
     },
@@ -42,13 +51,13 @@ var UserLogin = React.createClass({
     handleAlertDismiss: function() {
         this.setState({
             isLogin: {
-                success: true
+                resultCode: 0
             }
         });
     },
     render: function(){
         var alert;
-        if(this.state.isLogin.success === false ){
+        if(this.state.isLogin.resultCode !== 0 ){
             alert = (
                 <Alert bsStyle='danger' onDismiss={this.handleAlertDismiss} dismissAfter={2000}>
                     <p>{this.state.isLogin.message}</p>
@@ -68,10 +77,11 @@ var UserLogin = React.createClass({
         this.setState(this.getLoginState());
     },
     getLoginState: function(){
-        return {isLogin: AuthStore.isLogin(), userInfo: AuthStore.getUserInfo()};
+        return { isLogin: AuthStore.isLogin() };
     }
 });
-
+/************************************************************************/
+/************************************************************************/
 var Login = React.createClass({
     getInitialState: function() {
         return this.getLoginState();
@@ -83,7 +93,7 @@ var Login = React.createClass({
         AuthStore.removeChangeListener(this._onChange);
     },
     render: function(){
-        if(this.state.isLogin.success === true){
+        if(this.state.isLogin.resultCode === 0){
             return (
                 <UserInfo />
             )
@@ -97,7 +107,7 @@ var Login = React.createClass({
         this.setState(this.getLoginState());
     },
     getLoginState: function(){
-        return {isLogin: AuthStore.isLogin(), userInfo: AuthStore.getUserInfo()};
+        return {isLogin: AuthStore.isLogin()};
     }
 });
 
