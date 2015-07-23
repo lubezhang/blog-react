@@ -1,28 +1,8 @@
 import React from 'react';
 import { Input, Button, Alert } from 'react-bootstrap';
-import AuthService from '../services/AuthService';
-import AuthStore from '../stores/AuthStore';
+import AuthService from '../../services/AuthService';
+import AuthStore from '../../stores/AuthStore';
 
-var UserInfo = React.createClass({
-    getInitialState: function() {
-        return {
-            username: "" 
-        };
-    },
-    componentDidMount: function() {
-        this.setState(AuthStore.getUserInfo());
-    },
-    render: function(){
-        return (
-            <div className="login-container">
-                <div className="login-title">个人信息</div>
-                <div className="login-content">{this.state.username}</div>
-            </div>
-        );
-    }
-});
-/************************************************************************/
-/************************************************************************/
 var UserLogin = React.createClass({
     getInitialState: function(){
         return {
@@ -80,35 +60,5 @@ var UserLogin = React.createClass({
         return { isLogin: AuthStore.isLogin() };
     }
 });
-/************************************************************************/
-/************************************************************************/
-var Login = React.createClass({
-    getInitialState: function() {
-        return this.getLoginState();
-    },
-    componentDidMount: function() {
-        AuthStore.addChangeListener(this._onChange);
-    },
-    componentWillMount: function() {
-        AuthStore.removeChangeListener(this._onChange);
-    },
-    render: function(){
-        if(this.state.isLogin.resultCode === 0){
-            return (
-                <UserInfo />
-            )
-        } else {
-            return (
-                <UserLogin/>
-            )
-        }
-    },
-    _onChange: function(){
-        this.setState(this.getLoginState());
-    },
-    getLoginState: function(){
-        return {isLogin: AuthStore.isLogin()};
-    }
-});
 
-export default Login;
+export default UserLogin;

@@ -8,19 +8,35 @@ class AuthStore extends BaseStore {
         super();
         this.subscribe(() => this._registerToActions.bind(this));
 
-        this.userData =  {
-            resultCode: null,
-            message: ""
-        }
+        // this.userData =  {
+        //     resultCode: null,
+        //     message: ""
+        // }
+
+        this.loginInfoStorage = "stroage";  // session / stroage
     }
 
     _registerToActions(action) {
         switch(action.actionType){
             case ACTION_AUTH_LOGIN:
-                this.userData = action.data;
+                // this.userData = action.data;
+                if("session" === this.loginInfoStorage){
+
+                } else if("storage" === this.loginInfoStorage){
+                    
+                }
+
+                if(action.resultCode){
+
+                }
+                StorageUtils.set("CONST_USER_KEY", action.data);
                 this.emitChange();
                 break;
         }
+    }
+
+    getUserData(){
+        return StorageUtils.get("CONST_USER_KEY") ||  {resultCode: null, message: ""};
     }
 
     /**
@@ -28,7 +44,7 @@ class AuthStore extends BaseStore {
      * @return {[type]} [description]
      */
     getUserInfo(){
-        return this.userData.data;
+        return this.getUserData().data;
     }
 
     /**
@@ -36,10 +52,7 @@ class AuthStore extends BaseStore {
      * @return {Boolean} [description]
      */
     isLogin() {
-        return {
-            resultCode: this.userData.resultCode,
-            message: this.userData.message
-        };
+        return this.getUserData();
     }
 }
 

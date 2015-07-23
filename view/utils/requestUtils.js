@@ -1,7 +1,13 @@
 import reqwest from 'reqwest';
 import when from 'when';
+import AuthStore from '../stores/AuthStore';
 
 function request(url, method, params){
+    params = params || {};
+    var userInfo = AuthStore.getUserInfo();
+    if(userInfo){
+        params["userId"] = userInfo._id;
+    }
     return when(reqwest({
         url: url,
         method: method,
@@ -12,10 +18,11 @@ function request(url, method, params){
 }
 
 function getJSON(url, params) {
+
     return when(reqwest({
         url: url,
         method: 'POST',
-        crossOrigin: true,
+        // crossOrigin: true,
         type: 'json',
         data: params
     }))

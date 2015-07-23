@@ -1,24 +1,10 @@
 import React from 'react';
 
-import TopicStore from '../stores/TopicStore';
-import TopicService from '../services/TopicService';
+import TopicStore from '../../stores/TopicStore';
+import TopicService from '../../services/TopicService';
 
-var Topic = React.createClass({
-    titleHandle: function(e){
-        alert(e.target.text);
-    },
-    render: function(){
-        return (
-            <div className="topic-cell">
-                <a className="user-avatar" href="javascritp: void(0);">
-                    <img src="/img/user-icon.png" title={this.props.topic.userId} />
-                </a>
-                <span className="reply-count">20/100</span>
-                <a href="javascritp: void(0);" onClick={this.titleHandle}>{this.props.topic.title}</a>
-            </div>
-        );
-    }
-});
+import TopicListCell from "./TopicListCell";
+
 
 var TopicList = React.createClass({
     getInitialState: function() {
@@ -33,7 +19,7 @@ var TopicList = React.createClass({
     },
     render: function(){
         var topList =  this.state.topicList.map(function(item, i){
-            return <Topic topic={item}  /> ;
+            return <TopicListCell topic={item}  /> ;
         }, this);
         return (
             <div className="topic-container" >
@@ -49,6 +35,4 @@ var TopicList = React.createClass({
     }
 });
 
-export default {
-    TopicList, Topic
-}
+export default TopicList;

@@ -5,6 +5,8 @@ var messageUtils = require("../utils/messageUtils.js");
 
 
 router.route("/topic").get(function(req, res){
+	debugger;
+	console.dir("/api/topic ==== " + req.session.user);
 	Topic.find(function(err, topicList) {
 		messageUtils.returnData(res, {data: topicList});
 	});
