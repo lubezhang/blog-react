@@ -1,25 +1,12 @@
-var mongodb = require("./db");
+var mongoose = require("../utils/mongoose");
+var Schema = mongoose.Schema;
+var ObjectId = Schema.ObjectId;
 
-function User(user){
-	this.username = user.username;
-	this.password = user.password;
-}
+var UserSchema = new Schema({
+    username: String,
+    password: String
+});
 
-User.prototype.save = function save(callback){
-	var user = {
-		username:this.username,
-		password:this.password
-	};
-	mongodb.insert("user",user, function(err, user){
-		callback(err, user);
-	});
-};
+var UserModel = mongoose.model("User", UserSchema);
 
-User.find = function(user, callback){
-	mongodb.findOne("user",user, function(err, user){
-		callback(err, user);
-	});
-};
-
-module.exports = User;
-
+module.exports = UserModel;

@@ -6,23 +6,37 @@ class AuthStore extends BaseStore {
 
     constructor() {
         super();
-        this.subscribe(() => this._registerToActions.bind(this))
+        this.subscribe(() => this._registerToActions.bind(this));
+
+        // this.userData =  {
+        //     resultCode: null,
+        //     message: ""
+        // }
+
+        this.loginInfoStorage = "stroage";  // session / stroage
     }
 
     _registerToActions(action) {
         switch(action.actionType){
             case ACTION_AUTH_LOGIN:
-                
-                // if(action.data.data){
-                //     this.userInfo = action.data.data;
-                //     StorageUtils.setStorage(this.userInfo.username, action.data);
-                // } else {
-                //     this.message = action.data.message;
-                // }
-                this.userData = action.data;
+                // this.userData = action.data;
+                if("session" === this.loginInfoStorage){
+
+                } else if("storage" === this.loginInfoStorage){
+                    
+                }
+
+                if(action.resultCode){
+
+                }
+                StorageUtils.set("CONST_USER_KEY", action.data);
                 this.emitChange();
                 break;
         }
+    }
+
+    getUserData(){
+        return StorageUtils.get("CONST_USER_KEY") ||  {resultCode: null, message: ""};
     }
 
     /**
@@ -30,7 +44,7 @@ class AuthStore extends BaseStore {
      * @return {[type]} [description]
      */
     getUserInfo(){
-        return this.userInfo;
+        return this.getUserData().data;
     }
 
     /**
@@ -38,12 +52,7 @@ class AuthStore extends BaseStore {
      * @return {Boolean} [description]
      */
     isLogin() {
-        // if(!this.userInfo){
-        //     return {success: false  }
-        // }
-        // let userData = StorageUtils.getStorage(this.userInfo.username);
-        // return userData?{success: userData.success, message: userData.message}:{success: false, message: this.message};
-        return this.userData?this.userData:{success: false};
+        return this.getUserData();
     }
 }
 

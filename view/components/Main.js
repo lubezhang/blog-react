@@ -1,10 +1,8 @@
-// var Login = require('./login');
-
 import React from 'react';
 import ReactBootstrap, { Grid, Row, Col } from 'react-bootstrap';
 
-import Login from './Login';
-import { TopicList } from './Topic';
+import { Login } from './user';
+import { TopicList }  from './topic';
 
 var Main = React.createClass({
     render: function() {

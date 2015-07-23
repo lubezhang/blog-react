@@ -1,16 +1,21 @@
 let storage = sessionStorage;
 
 export default {
-    setStorage: function(key, value){
+    set: function(key, value){
         if("string" !== typeof value){
             value = JSON.stringify(value);
         } 
 
         storage.setItem(key, value);
     },
-    getStorage: function(key){
+    get: function(key){
         if(key){
-           return JSON.parse(storage.getItem(key));
+            let data = storage.getItem(key);
+            if(data && "undefined" !== data){
+                return JSON.parse(data);
+            } else {
+                return;
+            }
         } else {
             return;
         }

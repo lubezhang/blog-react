@@ -1,43 +1,35 @@
-var mongodb = require("../models/db");
+var router = require('express').Router();
+
 var Topic = require("../models/Topic.js");
-var messageUtils = require("../models/messageUtils.js");
-var indexRouter = require("./indexRouter");
+var messageUtils = require("../utils/messageUtils.js");
 
-exports.router = function(app){
-	var moduleName = "/"+app.get("moduleName");
 
-	app.get(moduleName + '/create', function(req, res) {
-		res.render('topicCreate', { title: '发布主题', user:req.session.user });
+router.route("/topic").get(function(req, res){
+	debugger;
+	console.dir("/api/topic ==== " + req.session.user);
+	Topic.find(function(err, topicList) {
+		messageUtils.returnData(res, {data: topicList});
 	});
+})
 
-	app.post(moduleName + '/list', function(req, res) {
-		indexRouter.getIndexData(function(err, topicLists){
-			messageUtils.returnData(res, {data: topicLists});
+router.route("/topic/:topicId")
+	.get(function(req, res){
+		// 根据ID查询topic的详细信息
+		Topic.findById(req.params.topicId, function(err, topic) {
+			messageUtils.returnData(res, {data: topic});
 		});
-	});
-
-	app.get(moduleName + '/list', function(req, res) {
-		indexRouter.getIndexData(function(err, topicLists){
-			messageUtils.returnData(res, {data: topicLists});
-		});
-	});
-
-	app.post(moduleName+'/create', function(req,res){
-		var currentTime = new Date();
-		var topic = new Topic();
-		topic.topicTitle = req.body.topicTitle;	//名称
-		topic.topicContent = req.body.topicContent
-		topic.listTime = currentTime;		//最后回复时间
-		topic.createTime = currentTime; 
-		topic.userId = req.session.user._id;
-
-		mongodb.insert("topic", topic,function(err, model){
+	})
+	.put(function(req, res){
+		// 更新topic的内容
+	})
+	.delete(function(req, res){
+		Topic.remove({_id: req.params.topicId}, function(err, topic){
 			if(err){
-				messageUtils.failure(res, "发布主题失败！");
+				messageUtils.returnData(res, err);
 			} else {
-				messageUtils.success(res, "发布主题成功！");
+				messageUtils.returnData(res, "删除成功1");
 			}
 		});
-	});
+	})
 
-};
+module.exports = router;

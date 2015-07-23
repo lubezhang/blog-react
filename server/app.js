@@ -1,35 +1,32 @@
-var http       = require('http');
-var path       = require('path');
+var path      = require('path');
+var express      = require('express');
+var bodyParser   = require('body-parser');
+var session      = require('express-session');
+var MemoryStore  = require('express-session').MemoryStore;
+var cookieParser = require('cookie-parser');
+var logger       = require('morgan');
+// var oauth2       = require("./oauth2");
 
-var express    = require('express');
-var partials   = require('express-partials');
-var MongoStore = require('connect-mongo')(express);
-var flash      = require('connect-flash');
-var routes     = require('./routes');
-var app        = express();
+var topicRouter  = require("./routes/topicRouter");
+var userRouter   = require("./routes/userRouter")
 
-// all environments
-app.set('port', process.env.PORT || 9000);
+var app = express(); 
 
-app.use(partials());
-app.use(express.favicon());
-app.use(flash());
-app.use(express.logger('dev'));
-// 解析请求体，可以从request中获取传递的参数
-app.use(express.bodyParser());
-app.use(express.methodOverride());
-app.use(express.cookieParser("superTopSecret")); 
-app.use(express.session());	//使用内存存储Session信息
-// 加载路由信息
-app.use(routes(app));
-// 设置静态文件路径
+app.set('port', process.env.PORT || 19000);
+
+app.use(logger('dev'));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({extended: true}));
+// app.use(express.query());
+app.use(cookieParser("xiaocc_"));
+app.use(session({cookie: { maxAge: 20000},secret: 'zhangqh', resave: false, saveUninitialized: true}));
 app.use(express.static(path.join(__dirname, '../build')));
+// app.use(oauth2.oauth());
+// app.use(oauth2.login());
 
-// development only
-if ('development' == app.get('env')) {
-  app.use(express.errorHandler());
-}
+app.use('/api', topicRouter);
+app.use('/api', userRouter);
 
-http.createServer(app).listen(app.get('port'), function(){
-	console.log('>>>>>>>>>>>>>>>>>>>>>>Express server listening on port %d in %s mod', app.get('port'), app.get("env"));
+var server = app.listen(app.get('port'), function() {
+  console.log('Express server listening on port ' + server.address().port);
 });

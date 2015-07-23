@@ -2,9 +2,8 @@ import React from 'react';
 
 import Main from './Main';
 import Header from './Header';
-import Login from './Login';
-import Register from './Register';
-import { TopicList, Topic } from './Topic';
+import { Register, Login } from './user';
+import { TopicList, TopicListCell } from './topic';
 
 export default { 
     Header, 
@@ -12,5 +11,5 @@ export default {
     Register,
     Main,
     TopicList,
-    Topic 
+    TopicListCell 
 };
